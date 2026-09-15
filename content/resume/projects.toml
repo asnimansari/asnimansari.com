@@ -1,0 +1,7 @@
+layout = "row"
+flow = "stack"
+
+[[item]]
+title = "gpx-rs"
+subtitle = "Rust library and CLI for parsing, validating, editing, and converting GPS track files (Strava/Garmin exports) — GPX 1.1 schema validation, track statistics, Douglas–Peucker simplification, and GPX ↔ GeoJSON/KML conversion. Published on crates.io."
+badge = "Rust"
