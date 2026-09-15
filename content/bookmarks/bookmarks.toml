@@ -1,0 +1,32 @@
+layout = "row"
+flow = "stack"
+
+[[item]]
+title = "fasterthanli.me"
+subtitle = "Deep, well-illustrated writeups on Rust, systems programming, and how things actually work."
+link = "https://fasterthanli.me/"
+badge = "blog"
+
+[[item]]
+title = "Dan Luu"
+subtitle = "Essays on engineering, hiring, and hardware, backed by an unusual amount of primary research."
+link = "https://danluu.com/"
+badge = "blog"
+
+[[item]]
+title = "Jepsen Analyses"
+subtitle = "Rigorous distributed systems correctness testing. Worth reading before trusting any database's consistency claims."
+link = "https://jepsen.io/analyses"
+badge = "research"
+
+[[item]]
+title = "Tokio Blog"
+subtitle = "Release notes and design writeups from the async runtime this site's author uses at work."
+link = "https://tokio.rs/blog"
+badge = "rust"
+
+[[item]]
+title = "High Scalability"
+subtitle = "Architecture writeups on how real systems are built and scaled."
+link = "http://highscalability.com/"
+badge = "systems"

@@ -1,0 +1,83 @@
+layout = "card"
+flow = "stack"
+
+[[item]]
+title = "The Forty Rules of Love"
+subtitle = "Elif Şafak"
+content = "A dual narrative that weaves a modern woman's midlife crisis together with the story of Rumi and the wandering dervish Shams of Tabriz."
+image = "https://covers.openlibrary.org/b/id/9078986-L.jpg"
+link = "https://openlibrary.org/works/OL20411060W"
+badge = "fiction"
+tags = ["fiction"]
+
+[[item]]
+title = "The Hard Thing About Hard Things"
+subtitle = "Ben Horowitz"
+content = "Horowitz's field notes from running a startup through near-collapse, short on formulas and long on what to do when there's no good option left."
+image = "https://covers.openlibrary.org/b/id/7279515-L.jpg"
+link = "https://openlibrary.org/works/OL16818208W"
+badge = "business"
+tags = ["business", "startups"]
+
+[[item]]
+title = "The Psychology of Money"
+subtitle = "Morgan Housel"
+content = "Short essays on how personal history, ego, and luck shape financial decisions more than spreadsheets do."
+image = "https://covers.openlibrary.org/b/id/10389354-L.jpg"
+link = "https://openlibrary.org/works/OL21640039W"
+badge = "non-fiction"
+tags = ["non-fiction", "business"]
+
+[[item]]
+title = "Maybe You Should Talk to Someone"
+subtitle = "Lori Gottlieb"
+content = "A therapist writes about her own patients while seeing a therapist herself, after a breakup sends her into a crisis she didn't see coming."
+image = "https://covers.openlibrary.org/b/id/8596019-L.jpg"
+link = "https://openlibrary.org/works/OL19791590W"
+badge = "memoir"
+tags = ["memoir", "psychology"]
+
+[[item]]
+title = "The One Minute Manager"
+subtitle = "Kenneth Blanchard & Spencer Johnson"
+content = "A short parable on three techniques for managing people: one minute goals, one minute praisings, and one minute reprimands."
+image = "https://covers.openlibrary.org/b/id/5288277-L.jpg"
+link = "https://openlibrary.org/works/OL66049W"
+badge = "business"
+tags = ["business", "management"]
+
+[[item]]
+title = "The Upside of Uncertainty"
+subtitle = "Nathan Furr & Susannah Harmon Furr"
+content = "A framework for treating uncertainty as an opportunity rather than a threat, drawn from interviews with people who took big leaps: astronauts, entrepreneurs, artists."
+image = "https://covers.openlibrary.org/b/id/13181380-L.jpg"
+link = "https://openlibrary.org/works/OL25346670W"
+badge = "non-fiction"
+tags = ["non-fiction", "business"]
+
+[[item]]
+title = "Skunk Works"
+subtitle = "Ben R. Rich & Leo Janos"
+content = "Rich's account of running Lockheed's secretive Skunk Works division, the shop behind the U-2, SR-71 Blackbird, and F-117 stealth fighter."
+image = "https://covers.openlibrary.org/b/id/7321776-L.jpg"
+link = "https://openlibrary.org/works/OL3466236W"
+badge = "memoir"
+tags = ["memoir", "engineering"]
+
+[[item]]
+title = "A Thousand Splendid Suns"
+subtitle = "Khaled Hosseini"
+content = "Thirty years of Afghan history through the lives of two women bound together as wives to the same man, a story of friendship and survival through war and upheaval."
+image = "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1655336738i/128029.jpg"
+link = "https://www.goodreads.com/en/book/show/128029.A_Thousand_Splendid_Suns"
+badge = "fiction"
+tags = ["fiction"]
+
+[[item]]
+title = "Losing My Virginity"
+subtitle = "Richard Branson"
+content = "Branson's own account of building Virgin from a student magazine into a sprawling group of companies, told with the same irreverence he ran the business with."
+image = "https://covers.openlibrary.org/b/id/605511-L.jpg"
+link = "https://www.goodreads.com/book/show/211099.Losing_My_Virginity"
+badge = "memoir"
+tags = ["business", "memoir"]
