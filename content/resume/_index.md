@@ -11,7 +11,7 @@ title = "Resume"
 subtitle = "Senior Backend Engineer"
 +++
 
-Senior backend engineer with 8 years of experience building and scaling real-money trading systems in Rust and Golang at Sensibull (by Zerodha), India's largest options trading platform with 13M+ registered users and ~200K daily active traders. First non-founding engineering hire; owned core systems end to end — order management, payments, real-time market data, notifications, and broker integrations — from architecture through production operations on AWS. Proven record of designing high-throughput, low-latency distributed systems (200K+ orders/day, p90 latency cut from 5s to milliseconds).
+Senior backend engineer with 8 years of experience building and scaling real-money trading systems in Rust and Golang at Sensibull (by Zerodha), India's largest options trading platform with 13M+ registered users and ~200K daily active traders. First non-founding engineering hire; owned core systems end to end (order management, payments, real-time market data, notifications, and broker integrations) from architecture through production operations on AWS. Proven record of designing high-throughput, low-latency distributed systems (200K+ orders/day, p90 latency cut from 5s to milliseconds).
 
 ## Experience
 

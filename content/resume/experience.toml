@@ -2,15 +2,15 @@ layout = "card"
 flow = "stack"
 
 [[item]]
-title = "Senior Software Engineer — Sensibull (by Zerodha)"
-badge = "Jul 2018 — Present"
+title = "Senior Software Engineer, Sensibull (by Zerodha)"
+badge = "Jul 2018 - Present"
 content = """
 First non-founding engineering hire (employee #6) at India's largest options trading platform (13M+ registered users, ~200K DAU); own core revenue and trading systems end to end within a flat, 13-engineer team.
 
 - Re-architected the derivative order management service into an event-driven system on Kafka with an idempotent order state machine, eliminating lock contention, cutting database load by ~50%, and reliably processing 200K+ orders/day.
-- Rewrote the paper trading platform (400K+ users) from Python to Rust — expiry-aware PnL caching, in-memory computation, and Redis-backed caches cut p90 response times from 5s to a few milliseconds.
+- Rewrote the paper trading platform (400K+ users) from Python to Rust. Expiry-aware PnL caching, in-memory computation, and Redis-backed caches cut p90 response times from 5s to a few milliseconds.
 - Engineered the WebSocket server: per-connection reader/writer tasks, per-client tick conflation, heartbeat-based dead-connection detection, and zero-downtime jittered deploys.
-- Built the broker market-data backbone end to end — Golang services parsing NSE binary UDP feeds and broker WebSocket streams, fanning out ~200K messages/minute over NATS.
+- Built the broker market-data backbone end to end: Golang services parsing NSE binary UDP feeds and broker WebSocket streams, fanning out ~200K messages/minute over NATS.
 - Built the subscription and payment platform (Razorpay + broker ledger-debit integrations, recurring billing, HMAC and AWS KMS encryption) and a multi-vendor notification service handling ~300K messages/day.
 - Built 3 stock-broker platform integrations that grew the user base 2.7x within a month of launch; provisioned AWS infra as code with Terraform and built CI/CD pipelines; mentored engineers and ran technical interviews.
 """
@@ -18,13 +18,13 @@ tags = ["Rust", "Golang", "Kafka", "PostgreSQL", "Redis", "AWS"]
 featured = true
 
 [[item]]
-title = "Co-founder & Tech Lead — Visitor Management Startup"
-badge = "Jan 2016 — Jan 2017"
-content = "Built an India-focused visitor management platform (Envoy alternative) — check-in app, host notifications, and admin dashboard — while completing my engineering degree. Shut down: too early for the Indian market."
+title = "Co-founder & Tech Lead, Visitor Management Startup"
+badge = "Jan 2016 - Jan 2017"
+content = "Built an India-focused visitor management platform (Envoy alternative): check-in app, host notifications, and admin dashboard, while completing my engineering degree. Shut down: too early for the Indian market."
 tags = ["Python", "JavaScript"]
 
 [[item]]
-title = "Co-founder & Tech Lead — Carpooling Platform"
+title = "Co-founder & Tech Lead, Carpooling Platform"
 badge = "Jan 2015"
-content = "Built a ride-sharing/carpooling product (BlaBlaCar model for India) end to end — matching web app and backend — while in college. Shut down due to regulatory constraints on carpooling in India."
+content = "Built a ride-sharing/carpooling product (BlaBlaCar model for India) end to end: matching web app and backend, while in college. Shut down due to regulatory constraints on carpooling in India."
 tags = ["Python", "JavaScript"]

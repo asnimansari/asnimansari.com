@@ -1,6 +1,6 @@
 base_url = "https://asnimansari.dev"
 title = "Asnim Ansari"
-description = "Senior backend engineer building real-money trading systems in Rust and Golang."
+description = "Senior backend engineer and Rustacean building real-money trading systems."
 default_language = "en"
 theme = "serene"
 output_dir = "public"
