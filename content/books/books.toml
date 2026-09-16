@@ -2,6 +2,15 @@ layout = "card"
 flow = "stack"
 
 [[item]]
+title = "One Thousand and One Nights"
+subtitle = "Anonymous"
+content = "The frame story of Scheherazade spinning tales to postpone her execution, holding together centuries of Middle Eastern, Persian, and South Asian folk tales."
+image = "https://covers.openlibrary.org/b/id/12922331-L.jpg"
+link = "https://openlibrary.org/works/OL8061279W"
+badge = "classic"
+tags = ["fiction", "classic"]
+
+[[item]]
 title = "The Forty Rules of Love"
 subtitle = "Elif Şafak"
 content = "A dual narrative that weaves a modern woman's midlife crisis together with the story of Rumi and the wandering dervish Shams of Tabriz."
