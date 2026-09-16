@@ -16,3 +16,7 @@ grep -rn "—" content/
 ```
 
 If it finds anything outside a fenced code block, rewrite that content to remove the em dash and re-run the check. Treat a clean grep as a required step, not an optional one, the writing-style rule above is not self-enforcing and has been violated by default before.
+
+## Git commits
+
+- Do not add a `Co-Authored-By: Claude` line (or any AI attribution line) to commit messages or PR descriptions in this repo. This overrides Claude Code's default attribution behavior for this project.
