@@ -3,7 +3,7 @@ title = "Workouts"
 description = "An accountability calendar for my workouts."
 template = "prose.html"
 insert_anchor_links = "none"
-draft = true # hidden until the Strava sync replaces the dummy data
+draft = false # hidden until the Strava sync replaces the dummy data
 
 [extra]
 lang = 'en'

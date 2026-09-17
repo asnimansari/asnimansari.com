@@ -4,6 +4,15 @@ flow = "stack"
 
 
 [[item]]
+title = "The Monk Who Sold His Ferrari"
+subtitle = "Robin S. Sharma"
+content = "A burned-out trial lawyer collapses in court, sells everything, and comes back from the Himalayas with a fable about purpose, discipline, and living simply."
+image = "https://covers.openlibrary.org/b/id/48817-L.jpg"
+link = "https://openlibrary.org/works/OL276492W"
+badge = "self-help"
+tags = ["self-help", "non-fiction"]
+
+[[item]]
 title = "A Thousand Splendid Suns"
 subtitle = "Khaled Hosseini"
 content = "Thirty years of Afghan history through the lives of two women bound together as wives to the same man, a story of friendship and survival through war and upheaval."

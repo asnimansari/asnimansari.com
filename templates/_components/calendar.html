@@ -13,13 +13,15 @@
 .wc-days{display:flex;gap:3px;flex-wrap:nowrap}
 .wc-day{width:11px;height:11px;border-radius:2px;background-color:var(--text-decoration-color);opacity:.2;flex:0 0 auto}
 .wc-day.status-future{opacity:.12}
-.wc-day.type-strength{background-color:var(--primary-color);opacity:1}
-.wc-day.type-cardio{background-color:var(--callout-tip-color);opacity:1}
+.wc-day.status-missed{background-color:transparent;border:1px solid var(--text-decoration-color);opacity:.55}
+.wc-day.type-multi{opacity:1;border:0}
 .wc-legend{display:flex;flex-wrap:wrap;gap:1em;margin-top:1em;font-size:.8em;color:var(--text-pale-color);align-items:center}
 .wc-legend-item{display:inline-flex;align-items:center;gap:.4em}
-.wc-swatch{display:inline-block;width:10px;height:10px;border-radius:2px}
-.wc-swatch.type-strength{background-color:var(--primary-color)}
-.wc-swatch.type-cardio{background-color:var(--callout-tip-color)}
+.wc-swatch{display:inline-block;width:10px;height:10px;border-radius:2px;background-color:var(--text-decoration-color);opacity:.2}
+.wc-swatch.status-missed{background-color:transparent;border:1px solid var(--text-decoration-color);opacity:.55}
+{% for t in data.type -%}
+.wc-day.type-{{ t.id }},.wc-swatch.type-{{ t.id }}{background-color:{{ t.color }};border:0;opacity:1}
+{% endfor -%}
 </style>
 <div class="workout-calendar">
 <div class="wc-stats">
@@ -35,7 +37,24 @@
 <span class="wc-month-label">{{ month.label }}</span>
 <span class="wc-days">
 {%- for day in month.day -%}
-<span class="wc-day status-{{ day.status }}{% if day.type %} type-{{ day.type }}{% endif %}" title="{{ day.date }}{% if day.type %}, {{ day.type }}{% endif %}"></span>
+{%- set_global types = [] -%}
+{%- if day.type -%}
+{%- if day.type is string -%}{%- set_global types = [day.type] -%}{%- else -%}{%- set_global types = day.type -%}{%- endif -%}
+{%- endif -%}
+{%- set n = types | length -%}
+{%- set_global labels = "" -%}
+{%- set_global stops = "" -%}
+{%- for tid in types -%}
+{%- set_global lab = tid -%}
+{%- set_global col = "var(--text-decoration-color)" -%}
+{%- for t in data.type -%}{%- if t.id == tid -%}{%- set_global lab = t.label -%}{%- set_global col = t.color -%}{%- endif -%}{%- endfor -%}
+{%- if labels != "" -%}{%- set_global labels = labels ~ ", " -%}{%- endif -%}
+{%- set_global labels = labels ~ lab -%}
+{%- if stops != "" -%}{%- set_global stops = stops ~ ", " -%}{%- endif -%}
+{%- set p0 = loop.index0 * 100 / n -%}{%- set p1 = loop.index * 100 / n -%}
+{%- set_global stops = stops ~ col ~ " " ~ p0 ~ "% " ~ p1 ~ "%" -%}
+{%- endfor -%}
+<span class="wc-day status-{{ day.status }}{% if n == 1 %} type-{{ types[0] }}{% elif n > 1 %} type-multi{% endif %}"{% if n > 1 %} style="background:linear-gradient(135deg, {{ stops }})"{% endif %} title="{{ day.date }}{% if n > 0 %}, {{ labels }}{% else %}, {{ day.status }}{% endif %}"></span>
 {%- endfor -%}
 </span>
 </div>
@@ -43,8 +62,11 @@
 </div>
 </div>
 <div class="wc-legend">
-<span class="wc-legend-item"><span class="wc-swatch type-strength"></span>strength</span>
-<span class="wc-legend-item"><span class="wc-swatch type-cardio"></span>cardio (runs, HIIT)</span>
+{%- for t in data.type %}
+<span class="wc-legend-item"><span class="wc-swatch type-{{ t.id }}"></span>{{ t.label }}</span>
+{%- endfor %}
+<span class="wc-legend-item"><span class="wc-swatch"></span>Rest</span>
+<span class="wc-legend-item"><span class="wc-swatch status-missed"></span>Missed</span>
 </div>
 </div>
 {%- endcomponent calendar %}
