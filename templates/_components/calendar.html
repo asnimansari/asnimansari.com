@@ -1,0 +1,50 @@
+{% component calendar(file: string, section) -%}
+{%- set data = load_data(path="content" ~ section.path ~ file, format="toml") -%}
+<style>
+.workout-calendar{margin:2em 0}
+.wc-stats{display:flex;flex-wrap:wrap;gap:1.5em;margin-bottom:1.75em}
+.wc-stat{display:flex;flex-direction:column;gap:.15em}
+.wc-stat-value{font-size:1.4em;font-weight:600;color:var(--text-color);line-height:1}
+.wc-stat-label{font-size:.8em;color:var(--text-pale-color)}
+.wc-grid-scroll{overflow-x:auto;padding-bottom:.25em}
+.wc-grid{display:flex;flex-direction:column;gap:6px;width:max-content}
+.wc-month-row{display:flex;align-items:center;gap:8px}
+.wc-month-label{flex:0 0 auto;width:58px;font-size:.72em;color:var(--text-pale-color);position:sticky;left:0;background-color:var(--bg-color);padding-right:2px}
+.wc-days{display:flex;gap:3px;flex-wrap:nowrap}
+.wc-day{width:11px;height:11px;border-radius:2px;background-color:var(--text-decoration-color);opacity:.2;flex:0 0 auto}
+.wc-day.status-future{opacity:.12}
+.wc-day.type-strength{background-color:var(--primary-color);opacity:1}
+.wc-day.type-cardio{background-color:var(--callout-tip-color);opacity:1}
+.wc-legend{display:flex;flex-wrap:wrap;gap:1em;margin-top:1em;font-size:.8em;color:var(--text-pale-color);align-items:center}
+.wc-legend-item{display:inline-flex;align-items:center;gap:.4em}
+.wc-swatch{display:inline-block;width:10px;height:10px;border-radius:2px}
+.wc-swatch.type-strength{background-color:var(--primary-color)}
+.wc-swatch.type-cardio{background-color:var(--callout-tip-color)}
+</style>
+<div class="workout-calendar">
+<div class="wc-stats">
+<div class="wc-stat"><span class="wc-stat-value">{{ data.stats.day_streak }}</span><span class="wc-stat-label">day streak</span></div>
+<div class="wc-stat"><span class="wc-stat-value">{{ data.stats.week_streak }}</span><span class="wc-stat-label">week streak</span></div>
+<div class="wc-stat"><span class="wc-stat-value">{{ data.stats.longest_streak }}</span><span class="wc-stat-label">longest streak</span></div>
+<div class="wc-stat"><span class="wc-stat-value">{{ data.stats.completed }}/{{ data.stats.scheduled_days }}</span><span class="wc-stat-label">workouts logged</span></div>
+</div>
+<div class="wc-grid-scroll">
+<div class="wc-grid">
+{%- for month in data.month -%}
+<div class="wc-month-row">
+<span class="wc-month-label">{{ month.label }}</span>
+<span class="wc-days">
+{%- for day in month.day -%}
+<span class="wc-day status-{{ day.status }}{% if day.type %} type-{{ day.type }}{% endif %}" title="{{ day.date }}{% if day.type %}, {{ day.type }}{% endif %}"></span>
+{%- endfor -%}
+</span>
+</div>
+{%- endfor -%}
+</div>
+</div>
+<div class="wc-legend">
+<span class="wc-legend-item"><span class="wc-swatch type-strength"></span>strength</span>
+<span class="wc-legend-item"><span class="wc-swatch type-cardio"></span>cardio (runs, HIIT)</span>
+</div>
+</div>
+{%- endcomponent calendar %}

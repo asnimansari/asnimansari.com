@@ -1,5 +1,5 @@
 +++
-title = "Resume"
+title = "Asnim Ansari Resume"
 description = "Resume of Asnim Ansari"
 template = "prose.html"
 insert_anchor_links = "none"
@@ -7,7 +7,7 @@ insert_anchor_links = "none"
 [extra]
 lang = 'en'
 
-title = "Resume"
+title = "Asnim Ansari Resume"
 subtitle = "Senior Backend Engineer"
 +++
 

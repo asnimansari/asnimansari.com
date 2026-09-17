@@ -1,14 +1,16 @@
 layout = "card"
 flow = "stack"
 
+
+
 [[item]]
-title = "One Thousand and One Nights"
-subtitle = "Anonymous"
-content = "The frame story of Scheherazade spinning tales to postpone her execution, holding together centuries of Middle Eastern, Persian, and South Asian folk tales."
-image = "https://covers.openlibrary.org/b/id/12922331-L.jpg"
-link = "https://openlibrary.org/works/OL8061279W"
-badge = "classic"
-tags = ["fiction", "classic"]
+title = "A Thousand Splendid Suns"
+subtitle = "Khaled Hosseini"
+content = "Thirty years of Afghan history through the lives of two women bound together as wives to the same man, a story of friendship and survival through war and upheaval."
+image = "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1655336738i/128029.jpg"
+link = "https://www.goodreads.com/en/book/show/128029.A_Thousand_Splendid_Suns"
+badge = "fiction"
+tags = ["fiction"]
 
 [[item]]
 title = "The Forty Rules of Love"
@@ -73,14 +75,6 @@ link = "https://openlibrary.org/works/OL3466236W"
 badge = "memoir"
 tags = ["memoir", "engineering"]
 
-[[item]]
-title = "A Thousand Splendid Suns"
-subtitle = "Khaled Hosseini"
-content = "Thirty years of Afghan history through the lives of two women bound together as wives to the same man, a story of friendship and survival through war and upheaval."
-image = "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1655336738i/128029.jpg"
-link = "https://www.goodreads.com/en/book/show/128029.A_Thousand_Splendid_Suns"
-badge = "fiction"
-tags = ["fiction"]
 
 [[item]]
 title = "Losing My Virginity"
@@ -90,3 +84,13 @@ image = "https://covers.openlibrary.org/b/id/605511-L.jpg"
 link = "https://www.goodreads.com/book/show/211099.Losing_My_Virginity"
 badge = "memoir"
 tags = ["business", "memoir"]
+
+
+[[item]]
+title = "One Thousand and One Nights"
+subtitle = "Anonymous"
+content = "The frame story of Scheherazade spinning tales to postpone her execution, holding together centuries of Middle Eastern, Persian, and South Asian folk tales."
+image = "https://covers.openlibrary.org/b/id/12922331-L.jpg"
+link = "https://openlibrary.org/works/OL8061279W"
+badge = "classic"
+tags = ["fiction", "classic"]

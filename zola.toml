@@ -38,6 +38,7 @@ nav = [
   { name = "notes", path = "/notes" },
   { name = "books", path = "/books" },
   { name = "bookmarks", path = "/bookmarks" },
+  # { name = "workouts", path = "/workouts" },
   { name = "resume", path = "/resume" },
   # { name = "tags", path = "/tags" },
   { name = "github", path = "https://github.com/asnimansari" },
