@@ -48,7 +48,7 @@ nav = [
 name = "Asnim Ansari"
 handle = "asnimansari"
 bio = "Senior backend engineer at Sensibull (by Zerodha), building real-money trading systems in Rust and Golang."
-avatar = "img/avatar.svg"
+avatar = "img/avatar.jpg"
 links = [
   { name = "GitHub", icon = "github", url = "https://github.com/asnimansari" },
   { name = "Email", icon = "email", url = "mailto:asnim96@gmail.com" },
