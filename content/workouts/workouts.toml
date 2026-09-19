@@ -40,7 +40,17 @@ color = "var(--callout-caution-color)"
 label = "Sep 2026"
 
 [[month.day]]
+date = "2026-09-17"
+status = "done"
+type = ["walk"]
+
+[[month.day]]
 date = "2026-09-18"
+status = "done"
+type = ["walk"]
+
+[[month.day]]
+date = "2026-09-19"
 status = "done"
 type = ["walk"]
 

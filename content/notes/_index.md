@@ -5,7 +5,8 @@ sort_by = "date"
 template = "posts.html"
 page_template = "post.html"
 insert_anchor_links = "right"
-generate_feeds = true
+generate_feeds = false
+render = false
 
 [extra]
 lang = "en"

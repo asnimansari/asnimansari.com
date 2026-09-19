@@ -35,7 +35,7 @@ anchors = "on"
 
 nav = [
   { name = "posts", path = "/posts" },
-  { name = "notes", path = "/notes" },
+  # { name = "notes", path = "/notes" },
   { name = "books", path = "/books" },
   { name = "bookmarks", path = "/bookmarks" },
   { name = "workouts", path = "/workouts" },
