@@ -4,6 +4,24 @@ flow = "stack"
 
 
 [[item]]
+title = "Deep Work"
+subtitle = "Cal Newport"
+content = "A case for cultivating the ability to focus without distraction on cognitively demanding tasks, and why that skill is becoming both rarer and more valuable."
+image = "https://covers.openlibrary.org/b/id/7988607-L.jpg"
+link = "https://openlibrary.org/works/OL17713267W"
+badge = "non-fiction"
+tags = ["non-fiction", "productivity"]
+
+[[item]]
+title = "The Subtle Art of Not Giving a F*ck"
+subtitle = "Mark Manson"
+content = "A counterintuitive self-help book that argues for caring less about more things, and more about what actually matters, instead of chasing endless positivity."
+image = "https://covers.openlibrary.org/b/id/8231990-L.jpg"
+link = "https://openlibrary.org/works/OL17590212W"
+badge = "self-help"
+tags = ["self-help", "non-fiction"]
+
+[[item]]
 title = "The Monk Who Sold His Ferrari"
 subtitle = "Robin S. Sharma"
 content = "A burned-out trial lawyer collapses in court, sells everything, and comes back from the Himalayas with a fable about purpose, discipline, and living simply."

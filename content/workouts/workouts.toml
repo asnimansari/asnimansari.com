@@ -4,10 +4,10 @@
 # A "done" day also carries a "type" matching one of the [[type]] ids below.
 
 [stats]
-day_streak = 1
+day_streak = 7
 week_streak = 1
-longest_streak = 1
-completed = 1
+longest_streak = 7
+completed = 7
 scheduled_days = 100
 
 # Categories. Each needs an id, a label for the legend, and a color.
@@ -31,10 +31,10 @@ id = "hiit"
 label = "HIIT"
 color = "var(--callout-caution-color)"
 #
-# [[type]]
-# id = "strength"
-# label = "Strength training"
-# color = "var(--primary-color)"
+[[type]]
+id = "strength"
+label = "Strength training"
+color = "var(--primary-color)"
 
 [[month]]
 label = "Sep 2026"
@@ -53,6 +53,26 @@ type = ["walk"]
 date = "2026-09-19"
 status = "done"
 type = ["walk"]
+
+[[month.day]]
+date = "2026-09-20"
+status = "done"
+type = ["walk"]
+
+[[month.day]]
+date = "2026-09-21"
+status = "done"
+type = ["strength"]
+
+[[month.day]]
+date = "2026-09-22"
+status = "done"
+type = ["run"]
+
+[[month.day]]
+date = "2026-09-23"
+status = "done"
+type = ["strength"]
 
 # Add one block per day, in date order. Examples of each shape:
 #
