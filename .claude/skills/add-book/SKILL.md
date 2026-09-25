@@ -5,9 +5,10 @@ description: Find a book on the internet by title, author, or a Goodreads/Open L
 
 # Add a book to the Books page
 
-This site's Books page is `content/books/_index.md` (a `prose.html` page that
-renders a `collection` component) backed by `content/books/books.toml`
-(`layout = "card"`, `flow = "stack"`). Each entry looks like:
+This site's Books page is `src/pages/books.astro`, which renders every entry
+of the `books` content collection as a card. The data lives in
+`src/content/data/books.toml` (schema in `src/content.config.ts`). The file
+is a plain list of `[[item]]` blocks with no header. Each entry looks like:
 
 ```toml
 [[item]]
@@ -43,7 +44,7 @@ tags = ["fiction"]
    `curl -sI` before using it (expect a `302` to an archive.org asset, that's
    fine). **Always use the direct external URL for `image`** (this project's
    convention, established explicitly), never download the cover into
-   `static/`.
+   `public/`.
 
    If neither source has a usable cover, omit the `image` field entirely
    rather than link something broken — every collection field except `title`
@@ -57,14 +58,15 @@ tags = ["fiction"]
    `"memoir"`, `"non-fiction"`, `"business"`, `"sre"`, etc.), matching the
    style of existing entries in `books.toml`.
 
-5. **Prepend the entry.** Read `content/books/books.toml`, add the new
-   `[[item]]` block right after the `layout`/`flow` header, before all
-   existing entries. The list is newest-first, so the most recently added
-   book is always on top. Keep existing entries untouched otherwise.
+5. **Prepend the entry.** Read `src/content/data/books.toml`, add the new
+   `[[item]]` block at the very top of the file, before all existing
+   entries. The list is newest-first, so the most recently added book is
+   always on top. Keep existing entries untouched otherwise.
 
-6. **Verify.** Run `zola build` from the project root, confirm it succeeds
-   and the new title appears in `public/books/index.html`, then
-   `rm -rf public` (build output isn't committed).
+6. **Verify.** Run `npm run build` from the project root, confirm it succeeds
+   and the new title appears in `dist/books/index.html`, then
+   `rm -rf dist` (build output isn't committed). The build validates the
+   entry against the schema, so a typo in a field name fails here.
 
 7. **Report** the title/author added and the cover source used (Open Library
    vs. the original site), so the user can swap it if they'd rather have a

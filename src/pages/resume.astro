@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CardList from '../components/CardList.astro';
+import RowList from '../components/RowList.astro';
+
+const [experience, projects, education] = await Promise.all([
+  getCollection('experience'),
+  getCollection('projects'),
+  getCollection('education'),
+]);
+
+const summary =
+  "Senior backend engineer with 8 years of experience building and scaling real-money trading systems in Rust and Golang at Sensibull (by Zerodha), India's largest options trading platform with 13M+ registered users and ~200K daily active traders. First non-founding engineering hire; owned core systems end to end (order management, payments, real-time market data, notifications, and broker integrations) from architecture through production operations on AWS. Proven record of designing high-throughput, low-latency distributed systems (200K+ orders/day, p90 latency cut from 5s to milliseconds).";
+
+const skills: [string, string][] = [
+  ['Programming Languages', 'Rust, Golang, Python, JavaScript, TypeScript, SQL'],
+  ['Frameworks & Libraries', 'Axum, Tokio, SQLx, REST APIs, WebSockets, Celery, React'],
+  ['Databases', 'PostgreSQL, Redis'],
+  ['Tools & Infra', 'Kafka, NATS, AWS SQS, AWS, Terraform, Docker, Jenkins, AWS CodeBuild, CI/CD, Nix'],
+  ['Cloud', 'AWS (ECS, EC2, RDS, MSK, SQS, Route53, CloudWatch, Athena, Parameter Store)'],
+  [
+    'Other',
+    'Distributed systems design, event-driven architecture, idempotent processing, observability, production debugging, mentoring, technical interviewing',
+  ],
+];
+---
+
+<Base title="Asnim Ansari Resume" description="Resume of Asnim Ansari">
+  <PageHead title="Asnim Ansari Resume" subtitle="Senior Backend Engineer" />
+
+  <div class="prose">
+    <p>{summary}</p>
+  </div>
+
+  <h2 class="section-title">Experience</h2>
+  <CardList items={experience} />
+
+  <h2 class="section-title">Projects</h2>
+  <RowList items={projects} />
+
+  <h2 class="section-title">Education</h2>
+  <RowList items={education} />
+
+  <h2 class="section-title">Skills</h2>
+  <div class="prose">
+    <ul>
+      {skills.map(([label, value]) => <li><strong>{label}</strong>: {value}</li>)}
+    </ul>
+  </div>
+
+  <h2 class="section-title">Contact</h2>
+  <div class="prose">
+    <p>
+      Bengaluru, Karnataka, India · <a href="mailto:asnim96@gmail.com">asnim96@gmail.com</a> ·
+      <a href="https://github.com/asnimansari">GitHub</a> ·
+      <a href="https://linkedin.com/in/asnimansari">LinkedIn</a>
+    </p>
+  </div>
+</Base>

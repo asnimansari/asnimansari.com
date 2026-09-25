@@ -1,0 +1,52 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TagList from '../../components/TagList.astro';
+import Toc from '../../components/Toc.astro';
+import { getPosts, formatDate, isoDate } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<Base title={post.data.title} description={post.data.description} type="article" published={post.data.date}>
+  <a class="back" href="/posts/">← Posts</a>
+  <article>
+    <header class="article-head">
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time>
+        <TagList tags={post.data.tags} />
+      </div>
+    </header>
+    <Toc headings={headings} />
+    <div class="prose" data-prose>
+      <Content />
+    </div>
+  </article>
+
+  <script>
+    // Copy button on every code block
+    document.querySelectorAll<HTMLPreElement>('[data-prose] pre').forEach((pre) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(pre.querySelector('code')?.innerText ?? pre.innerText);
+          btn.textContent = 'Copied';
+        } catch {
+          btn.textContent = 'Failed';
+        }
+        setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      });
+      pre.appendChild(btn);
+    });
+  </script>
+</Base>

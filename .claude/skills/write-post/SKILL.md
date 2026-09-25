@@ -5,18 +5,18 @@ description: Write a new blog post for this site's Posts section, plus a three-p
 
 # Write a blog post and its LinkedIn series
 
-Posts live in `content/posts/` as one Markdown file each. The section is
-sorted by date and rendered with `post.html`. A post's URL is
-`https://asnimansari.dev/posts/<slug>/`, where `<slug>` is the filename
+Posts live in `src/content/posts/` as one Markdown file each. They are
+sorted by date and rendered by `src/pages/posts/[slug].astro`. A post's URL
+is `https://asnimansari.dev/posts/<slug>/`, where `<slug>` is the filename
 without `.md`.
 
 Each post gets a companion LinkedIn series at `linkedin/<slug>.md` in the
-repo root. Zola only builds `content/`, `templates/`, `static/`, `sass/` and
-`themes/`, so this folder is never published to the site.
+repo root. Astro only builds `src/` and `public/`, so this folder is never
+published to the site.
 
 ## The voice
 
-Read both existing posts in `content/posts/` before writing. They set the
+Read the existing posts in `src/content/posts/` before writing. They set the
 voice, and a new post should read like the same person wrote it:
 
 - First person, "I" or "we" (use "we" for work done with a team). Plain,
@@ -57,44 +57,40 @@ closing paragraph that restates the whole post.
 
    The slug is the title lowercased, punctuation dropped, spaces as hyphens
    (`the-middleware-that-authenticated-nothing`). Trim it if the title is
-   long. Check `content/posts/<slug>.md` doesn't already exist.
+   long. Check `src/content/posts/<slug>.md` doesn't already exist.
 
-3. **Write the post** to `content/posts/<slug>.md`:
+3. **Write the post** to `src/content/posts/<slug>.md`. Front matter is
+   YAML (not TOML):
 
-   ```toml
-   +++
-   title = "Sentence case title"
-   description = "One or two sentences on what the post is about. Used for the listing and link previews."
-   date = 2026-09-18
-   draft = true
-
-   [taxonomies]
-   tags = ["rust", "backend"]
-
-   [extra]
-   lang = "en"
-   +++
+   ```yaml
+   ---
+   title: "Sentence case title"
+   description: "One or two sentences on what the post is about. Used for the listing and link previews."
+   date: 2026-09-18
+   tags: ["rust", "backend"]
+   draft: true
+   ---
    ```
 
    - Tags are lowercase and hyphenated. Reuse existing tags where they fit,
-     list them with `grep -h "^tags" content/posts/*.md`.
-   - Always start with `draft = true`. Pushing to `master` deploys the site,
-     so the post stays out of the build until the user reads it and says
-     it's ready. Then remove the `draft` line.
-   - Images go in `static/img/` and are referenced as `/img/<name>`.
+     list them with `grep -h "^tags" src/content/posts/*.md`.
+   - Always start with `draft: true`. Pushing to `master` deploys the site,
+     and drafts are left out of the production build (they only show in
+     `npm run dev`), so the post stays unpublished until the user reads it
+     and says it's ready. Then remove the `draft` line.
+   - Images go in `public/img/` and are referenced as `/img/<name>`.
+   - Headings `##` and `###` get anchor links and a table of contents
+     automatically. Fenced code blocks need a language tag for highlighting.
 
 4. **Show the user the draft** and revise until they're happy with it. Get
    the post settled before writing the LinkedIn series, since the series is
    cut from the final text.
 
-5. **Verify the build.** From the project root:
-
-   ```
-   zola build --drafts
-   ```
-
-   It must succeed and `public/posts/<slug>/index.html` must exist. Then
-   `rm -rf public`, build output is not committed.
+5. **Verify the build.** From the project root, run `npm run build`. It must
+   succeed. A draft is not built, so to see the draft rendered run
+   `npm run dev` and open `http://localhost:4321/posts/<slug>/`. After the
+   `draft` line is removed, `dist/posts/<slug>/index.html` must exist. Then
+   `rm -rf dist`, build output is not committed.
 
 6. **Write the LinkedIn series** to `linkedin/<slug>.md`. Three posts, each
    meant to go out on a different day, cut from the blog post rather than
@@ -169,13 +165,13 @@ closing paragraph that restates the whole post.
    edit, and the LinkedIn text is covered by the same rule:
 
    ```
-   grep -rn "—" content/ linkedin/
+   grep -rn "—" src/ linkedin/
    ```
 
    Anything outside a fenced code block must be rewritten, then run the
    check again until it comes back clean.
 
 8. **Report** the post path and its future URL, that it's still marked
-   `draft = true`, the LinkedIn file path with each part's suggested date
+   `draft: true`, the LinkedIn file path with each part's suggested date
    and character count, and any facts you left out or need the user to
    confirm.

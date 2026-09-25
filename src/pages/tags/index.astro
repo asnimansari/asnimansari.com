@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { getTags } from '../../lib/posts';
+
+const tags = await getTags();
+---
+
+<Base title="Tags" description="Posts by tag.">
+  <PageHead title="Tags" />
+  <ul class="tag-list">
+    {
+      tags.map((t) => (
+        <li>
+          <a class="chip" href={`/tags/${t.slug}/`}>
+            {t.name}
+            <span class="count">{t.posts.length}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import PostList from '../../components/PostList.astro';
+import { getTags } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const tags = await getTags();
+  return tags.map((t) => ({ params: { tag: t.slug }, props: { tag: t } }));
+}
+
+const { tag } = Astro.props;
+---
+
+<Base title={`Tag: ${tag.name}`} description={`Posts tagged ${tag.name}.`}>
+  <a class="back" href="/tags/">← Tags</a>
+  <PageHead title={`Tag: ${tag.name}`} />
+  <PostList posts={tag.posts} />
+</Base>

@@ -5,10 +5,10 @@ description: Add a URL to this site's Bookmarks page. Use when the user asks to 
 
 # Add a bookmark to the Bookmarks page
 
-This site's Bookmarks page is `content/bookmarks/_index.md` (a `prose.html`
-page that renders a `collection` component) backed by
-`content/bookmarks/bookmarks.toml` (`layout = "row"`, `flow = "stack"`). Each
-entry looks like:
+This site's Bookmarks page is `src/pages/bookmarks.astro`, which renders every
+entry of the `bookmarks` content collection as a row. The data lives in
+`src/content/data/bookmarks.toml` (schema in `src/content.config.ts`), a plain
+list of `[[item]]` blocks with no header. Each entry looks like:
 
 ```toml
 [[item]]
@@ -39,14 +39,14 @@ No `subtitle`, entries on this page are just a title, a link, and a badge
    Reuse an existing badge from `bookmarks.toml` when the link fits one of
    those categories rather than inventing a near-duplicate.
 
-4. **Prepend the entry.** Read `content/bookmarks/bookmarks.toml`, add the
-   new `[[item]]` block right after the `layout`/`flow` header, before all
-   existing entries. The list is newest-first, so the most recently added
-   link is always on top. Keep existing entries untouched otherwise.
+4. **Prepend the entry.** Read `src/content/data/bookmarks.toml`, add the
+   new `[[item]]` block at the very top of the file, before all existing
+   entries. The list is newest-first, so the most recently added link is
+   always on top. Keep existing entries untouched otherwise.
 
-5. **Verify.** Run `zola build` from the project root, confirm it succeeds
-   and the new title appears in `public/bookmarks/index.html`, then
-   `rm -rf public` (build output isn't committed).
+5. **Verify.** Run `npm run build` from the project root, confirm it succeeds
+   and the new title appears in `dist/bookmarks/index.html`, then
+   `rm -rf dist` (build output isn't committed).
 
 6. **Report** the title and badge added, and note if the fetch was blocked
    and the title had to fall back to the hostname.

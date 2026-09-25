@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import RowList from '../components/RowList.astro';
+
+const bookmarks = await getCollection('bookmarks');
+---
+
+<Base title="Bookmarks" description="Links worth keeping around.">
+  <PageHead title="Bookmarks" subtitle="Links I keep coming back to." />
+  <RowList items={bookmarks} />
+</Base>

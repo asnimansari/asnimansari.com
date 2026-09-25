@@ -1,3 +1,4 @@
-public/
+dist/
+.astro/
+node_modules/
 .env
-.strava_cache.json

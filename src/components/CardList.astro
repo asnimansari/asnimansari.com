@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { md } from '../lib/md';
+
+type Name = 'books' | 'experience';
+interface Props {
+  items: CollectionEntry<Name>[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="stack">
+  {
+    items.map(({ data: it }) => (
+      <li class:list={['card', { featured: it.featured }]}>
+        {it.image && <img src={it.image} alt="" width="72" height="108" loading="lazy" decoding="async" />}
+        <div class="card-body">
+          <div class="card-head">
+            <h3>{it.link ? <a href={it.link} rel="noopener noreferrer">{it.title}</a> : it.title}</h3>
+            {it.badge && <span class="badge">{it.badge}</span>}
+          </div>
+          {it.subtitle && <p class="sub">{it.subtitle}</p>}
+          {it.content && <div class="desc" set:html={md(it.content)} />}
+          {it.tags.length > 0 && (
+            <ul class="chips">
+              {it.tags.map((t) => (
+                <li>
+                  <span class="chip">{t}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ul>

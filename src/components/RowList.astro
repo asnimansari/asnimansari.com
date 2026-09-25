@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Name = 'bookmarks' | 'projects' | 'education';
+interface Props {
+  items: CollectionEntry<Name>[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="rows">
+  {
+    items.map(({ data: it }) => (
+      <li>
+        <span class="row-main">
+          {it.link ? (
+            <a class="row-title" href={it.link} rel="noopener noreferrer">
+              {it.title}
+            </a>
+          ) : (
+            <span class="row-title">{it.title}</span>
+          )}
+          {it.subtitle && <span class="sub">{it.subtitle}</span>}
+        </span>
+        {it.badge && <span class="badge">{it.badge}</span>}
+      </li>
+    ))
+  }
+</ul>

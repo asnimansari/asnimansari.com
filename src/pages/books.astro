@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CardList from '../components/CardList.astro';
+
+const books = await getCollection('books');
+const description = "Books I've read and liked.";
+---
+
+<Base title="Books" description={description}>
+  <PageHead title="Books" subtitle="Some books I've read and would recommend." />
+  <CardList items={books} />
+</Base>
