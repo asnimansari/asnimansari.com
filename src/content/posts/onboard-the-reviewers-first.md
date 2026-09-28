@@ -3,7 +3,7 @@ title: "When a team adopts Rust, onboard the reviewers first"
 description: "The people who need ramping up when a team picks up Rust are usually the reviewers, not the authors. A checklist for a Go engineer's first Rust review, and what to let slide early on."
 date: 2026-09-28
 tags: ["rust", "backend"]
-draft: true
+draft: false
 ---
 
 When a team adopts Rust, the people who need onboarding first are often the
