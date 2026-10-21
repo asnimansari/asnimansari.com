@@ -4,6 +4,78 @@ flow = "stack"
 
 
 [[item]]
+title = "The Kite Runner"
+subtitle = "Khaled Hosseini"
+content = "Amir looks back on a boyhood in Kabul and the betrayal of his closest friend, then returns to Afghanistan years later to try to make it right."
+image = "https://covers.openlibrary.org/b/id/14846827-L.jpg"
+link = "https://openlibrary.org/works/OL5781992W"
+badge = "fiction"
+tags = ["fiction"]
+
+[[item]]
+title = "Stronger After Stroke"
+subtitle = "Peter G. Levine"
+content = "A practical guide to stroke recovery built on neuroplasticity, laying out how repeated, task-specific practice rebuilds movement and function."
+image = "https://covers.openlibrary.org/b/id/8047783-L.jpg"
+link = "https://openlibrary.org/works/OL11977092W"
+badge = "health"
+tags = ["non-fiction", "health"]
+
+[[item]]
+title = "The Spy Who Came in from the Cold"
+subtitle = "John le Carré"
+content = "A burnt-out British agent takes one last Cold War assignment in East Germany, and finds the line between the two sides is blurrier than he was told."
+image = "https://covers.openlibrary.org/b/id/7013626-L.jpg"
+link = "https://openlibrary.org/works/OL15723140W"
+badge = "fiction"
+tags = ["fiction", "spy"]
+
+[[item]]
+title = "Careless People"
+subtitle = "Sarah Wynn-Williams"
+content = "A former Facebook policy executive's insider account of the company's leadership and how decisions got made as it grew into a global power."
+image = "https://covers.openlibrary.org/b/id/14852090-L.jpg"
+link = "https://openlibrary.org/works/OL42735465W"
+badge = "memoir"
+tags = ["memoir", "tech"]
+
+[[item]]
+title = "The Anxious Generation"
+subtitle = "Jonathan Haidt"
+content = "Haidt argues that the shift from play-based to phone-based childhood drove the rise in teen anxiety and depression, and proposes norms to reverse it."
+image = "https://covers.openlibrary.org/b/id/15104803-L.jpg"
+link = "https://openlibrary.org/works/OL37575384W"
+badge = "non-fiction"
+tags = ["non-fiction", "psychology"]
+
+[[item]]
+title = "The Mom Test"
+subtitle = "Rob Fitzpatrick"
+content = "How to talk to customers and ask questions that even your mum couldn't lie to you about, so you learn whether your idea is worth building."
+image = "https://covers.openlibrary.org/b/id/10660557-L.jpg"
+link = "https://openlibrary.org/works/OL23982116W"
+badge = "business"
+tags = ["business", "startups"]
+
+[[item]]
+title = "The Great Mental Models"
+subtitle = "Shane Parrish & Rhiannon Beaubien"
+content = "A toolkit of timeless thinking frameworks from physics, biology, and economics for making better decisions and avoiding common reasoning errors."
+image = "https://covers.openlibrary.org/b/id/9778922-L.jpg"
+link = "https://openlibrary.org/works/OL20774533W"
+badge = "non-fiction"
+tags = ["non-fiction", "thinking"]
+
+[[item]]
+title = "How to Talk to Anyone"
+subtitle = "Leil Lowndes"
+content = "92 small techniques for making a strong first impression and starting conversations with anyone, from small talk to business meetings."
+image = "https://covers.openlibrary.org/b/id/58950-L.jpg"
+link = "https://openlibrary.org/works/OL1874705W"
+badge = "self-help"
+tags = ["self-help", "non-fiction"]
+
+[[item]]
 title = "Deep Work"
 subtitle = "Cal Newport"
 content = "A case for cultivating the ability to focus without distraction on cognitively demanding tasks, and why that skill is becoming both rarer and more valuable."
@@ -121,3 +193,13 @@ image = "https://covers.openlibrary.org/b/id/12922331-L.jpg"
 link = "https://openlibrary.org/works/OL8061279W"
 badge = "classic"
 tags = ["fiction", "classic"]
+
+
+[[item]]
+title = "The Richest Man in Babylon"
+subtitle = "George S. Clason"
+content = "A collection of parables set in ancient Babylon that teach simple money habits: pay yourself first, live below your means, and make your savings work for you."
+image = "https://covers.openlibrary.org/b/id/10491331-L.jpg"
+link = "https://openlibrary.org/works/OL8165007W"
+badge = "business"
+tags = ["non-fiction", "business"]
