@@ -4,6 +4,15 @@ flow = "stack"
 
 
 [[item]]
+title = "The Theory of Poker"
+subtitle = "David Sklansky"
+content = "Sklansky's classic on the math and reasoning behind winning poker, covering the fundamental theorem, pot odds, bluffing, and position."
+image = "https://covers.openlibrary.org/b/isbn/1880685000-L.jpg"
+link = "https://openlibrary.org/isbn/1880685000"
+badge = "non-fiction"
+tags = ["non-fiction", "poker"]
+
+[[item]]
 title = "The Kite Runner"
 subtitle = "Khaled Hosseini"
 content = "Amir looks back on a boyhood in Kabul and the betrayal of his closest friend, then returns to Afghanistan years later to try to make it right."
