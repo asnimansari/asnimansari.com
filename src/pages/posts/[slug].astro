@@ -1,34 +1,65 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import TagList from '../../components/TagList.astro';
-import Toc from '../../components/Toc.astro';
-import { getPosts, formatDate, isoDate } from '../../lib/posts';
+import { SITE } from '../../consts';
+import { getPosts, slugifyTag, formatDate, isoDate } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post, i) => ({ params: { slug: post.id }, props: { post, more: posts.filter((p) => p.id !== post.id).slice(Math.max(0, i - 1), Math.max(0, i - 1) + 5) } }));
 }
 
-const { post } = Astro.props;
+const { post, more } = Astro.props;
 const { Content, headings } = await render(post);
+const d = post.data;
+const toc = headings.filter((h) => h.depth === 2);
+const noteCount = ((post.body ?? '').match(/^\[\^[^\]]+\]:/gm) ?? []).length;
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
-<Base title={post.data.title} description={post.data.description} type="article" published={post.data.date}>
-  <a class="back" href="/posts/">← Posts</a>
+<Base title={d.title} description={d.description} type="article" published={d.date} noindex={d.draft}>
   <article>
-    <header class="article-head">
-      <h1>{post.data.title}</h1>
-      <div class="article-meta">
-        <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time>
-        <TagList tags={post.data.tags} />
+    <header class="g ehead">
+      <div class="meta">
+        <div><span class="lbl">Post</span>{d.tags.length ? d.tags.slice(0, 3).map((t, k) => <>{k > 0 && ', '}<a href={`/tags/${slugifyTag(t)}/`}>{t}</a></>) : 'Writing'}</div>
+        <div><span class="lbl">Published</span><time datetime={isoDate(d.date)}>{formatDate(d.date)}</time></div>
+        {d.draft && <div><span class="lbl">Status</span>Draft, unlisted</div>}
+      </div>
+      <div class="tt">
+        <h1>{d.title}</h1>
+        <p class="dek">{d.description}</p>
       </div>
     </header>
-    <Toc headings={headings} />
-    <div class="prose" data-prose>
-      <Content />
+    <div class="g ebody">
+      {(toc.length > 1 || noteCount > 0) && (
+        <aside class="toc" aria-label="Contents">
+          {toc.length > 1 && (
+            <>
+              <span class="lbl">In this post</span>
+              <ol>{toc.map((h, k) => <li><a href={`#${h.slug}`}><span class="num">{pad(k + 1)}</span>{h.text}</a></li>)}</ol>
+            </>
+          )}
+          {noteCount > 0 && <p class="lbl">{noteCount} {noteCount === 1 ? 'note' : 'notes'} in the margin<span class="sq"></span></p>}
+        </aside>
+      )}
+      <div class="prose" data-prose><Content /></div>
+      <div class="endbox">
+        <img src="/img/avatar.jpg" alt="" width="64" height="64" loading="lazy" decoding="async" />
+        <div>
+          <p><b>{SITE.name}</b> {SITE.bio.replace(/^Senior/, 'is a senior').replace(/\.$/, '')}.</p>
+          <a class="more" href="/posts/feed.xml">Follow the posts by feed →</a>
+        </div>
+      </div>
     </div>
   </article>
+  {more.length > 0 && (
+    <section class="g enext" aria-labelledby="h-more">
+      <h2 class="colh" id="h-more"><span><span class="num">→</span>More posts</span><a class="more" href="/posts/">All posts</a></h2>
+      <ul class="rows">
+        {more.map((p) => <li><a href={`/posts/${p.id}/`}><b>{p.data.title}</b><span class="dek">{p.data.description}</span><span class="d">{formatDate(p.data.date)}</span></a></li>)}
+      </ul>
+    </section>
+  )}
 
   <script>
     // Copy button on every code block

@@ -4,6 +4,7 @@ export const SITE = {
   description: 'Senior backend engineer and Rustacean building real-money trading systems.',
   name: 'Asnim Ansari',
   handle: 'asnimansari',
+  role: 'Backend, Rust and trading systems',
   bio: 'Senior backend engineer at Sensibull (by Zerodha), building real-money trading systems in Rust and Golang.',
   copyright: '© 2026 Asnim Ansari',
   lang: 'en',

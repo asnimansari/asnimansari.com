@@ -1,23 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PageHead from '../../components/PageHead.astro';
 import { getTags } from '../../lib/posts';
 
 const tags = await getTags();
 ---
 
 <Base title="Tags" description="Posts by tag.">
-  <PageHead title="Tags" />
-  <ul class="tag-list">
-    {
-      tags.map((t) => (
-        <li>
-          <a class="chip" href={`/tags/${t.slug}/`}>
-            {t.name}
-            <span class="count">{t.posts.length}</span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <header class="g phead">
+    <span class="lbl ink">Tags · {tags.length}</span>
+    <div class="tt"><h1>Tags. <span>Posts grouped by topic.</span></h1></div>
+  </header>
+  <section class="g topics">
+    <div class="tcloud">
+      {tags.map((t) => <a href={`/tags/${t.slug}/`}>{t.name}<span>{t.posts.length}</span></a>)}
+    </div>
+  </section>
 </Base>

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeMarginNotes from './src/plugins/rehype-margin-notes.js';
 
 export default defineConfig({
   site: 'https://asnimansari.dev',
@@ -13,6 +14,7 @@ export default defineConfig({
     },
     processor: unified({
       rehypePlugins: [
+        rehypeMarginNotes,
         rehypeSlug,
         [
           rehypeAutolinkHeadings,

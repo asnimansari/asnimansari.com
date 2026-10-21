@@ -1,14 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PageHead from '../../components/PageHead.astro';
-import PostList from '../../components/PostList.astro';
-import { getPosts } from '../../lib/posts';
+import { getPosts, formatDate, isoDate } from '../../lib/posts';
 import { BLOG } from '../../consts';
 
 const posts = await getPosts();
+const years = [...new Set(posts.map((p) => p.data.date.getUTCFullYear()))];
 ---
 
 <Base title={BLOG.pageTitle} description={BLOG.description}>
-  <PageHead title={BLOG.pageTitle} subtitle={BLOG.subtitle} />
-  <PostList posts={posts} />
+  <header class="g phead">
+    <span class="lbl ink">Posts · {posts.length}</span>
+    <div class="tt">
+      <h1>{BLOG.pageTitle}. <span>{BLOG.subtitle}</span></h1>
+    </div>
+  </header>
+  {years.map((y) => {
+    const ps = posts.filter((p) => p.data.date.getUTCFullYear() === y);
+    return (
+      <section class="g year" aria-label={String(y)}>
+        <h2 class="gl">{y}<span class="lbl">{ps.length} {ps.length === 1 ? 'post' : 'posts'}</span></h2>
+        <ul class="rows">
+          {ps.map((p) => (
+            <li><a class="with-dek" href={`/posts/${p.id}/`}><b class="tt">{p.data.title}</b><span class="dek">{p.data.description}</span><time class="d" datetime={isoDate(p.data.date)}>{formatDate(p.data.date)}</time></a></li>
+          ))}
+        </ul>
+      </section>
+    );
+  })}
 </Base>

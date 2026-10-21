@@ -1,19 +1,22 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE } from '../consts';
+import grotesk from '@fontsource-variable/host-grotesk/files/host-grotesk-latin-wght-normal.woff2?url';
+import serif from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
+import { SITE, NAV, LINKS } from '../consts';
 
 interface Props {
   title?: string;
   description?: string;
   type?: 'website' | 'article';
   published?: Date;
+  noindex?: boolean;
 }
 
-const { title, description = SITE.description, type = 'website', published } = Astro.props;
+const { title, description = SITE.description, type = 'website', published, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const path = Astro.url.pathname;
+const current = (p: string) => !p.startsWith('http') && path.startsWith(p);
 ---
 
 <!doctype html>
@@ -21,9 +24,15 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- the reader's light/dark choice, applied before the first paint so the page doesn't flash -->
+    <script is:inline>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:title" content={title ?? SITE.title} />
     <meta property="og:description" content={description} />
@@ -33,46 +42,38 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     {published && <meta property="article:published_time" content={published.toISOString()} />}
     <meta name="twitter:card" content="summary" />
 
+    <link rel="preload" href={grotesk} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serif} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
     <link rel="alternate" type="application/atom+xml" title="Posts" href="/posts/feed.xml" />
-
-    <!-- Set the theme before first paint so there is no flash -->
-    <script is:inline>
-      (function () {
-        var t;
-        try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (t !== 'light' && t !== 'dark') {
-          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        document.documentElement.dataset.theme = t;
-      })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <Header />
-    <main class="shell">
+    <a class="skip" href="#main">Skip to the content</a>
+    <header class="g head">
+      <div class="id"><a class="name" href="/" rel="home">{SITE.name}<i>.</i></a><span class="lbl when">{SITE.role}</span></div>
+      <nav aria-label="Sections">
+        {NAV.map((item) => (
+          <a
+            href={item.path}
+            aria-current={current(item.path) ? 'page' : undefined}
+            {...(item.external ? { rel: 'noopener noreferrer', target: '_blank' } : {})}
+          >{item.name}</a>
+        ))}
+        <button class="mode" type="button" aria-label="Dark mode" aria-pressed="false" title="Dark mode" hidden><span></span></button>
+      </nav>
+    </header>
+    <!-- the switch: flips light/dark and remembers it; with no choice made, the system setting rules -->
+    <script is:inline>(function(){var r=document.documentElement,b=document.querySelector('.mode'),m=matchMedia('(prefers-color-scheme: dark)');function dark(){return r.dataset.theme?r.dataset.theme==='dark':m.matches}function show(){b.setAttribute('aria-pressed',String(dark()));if(r.dataset.theme)document.querySelectorAll('meta[name=theme-color]').forEach(function(x){x.content=dark()?'#121212':'#ffffff'})}b.hidden=false;show();m.addEventListener('change',show);b.addEventListener('click',function(){r.dataset.theme=dark()?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}show()})})();</script>
+    <main id="main">
       <slot />
     </main>
-    <Footer />
-
-    <script>
-      const root = document.documentElement;
-      document.querySelector('.theme-btn')?.addEventListener('click', () => {
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        try {
-          localStorage.setItem('theme', next);
-        } catch {}
-      });
-    </script>
+    <footer class="g foot">
+      <div class="me"><img src="/img/avatar.jpg" alt="" width="44" height="44" loading="lazy" decoding="async" /><span>{SITE.bio}</span></div>
+      <div>{LINKS.map((l, i) => <>{i > 0 && <br />}<a href={l.url} rel="me">{l.name}</a></>)}</div>
+      <div><a href="/posts/feed.xml">Feed: posts</a><br /><a href="/llms.txt">llms.txt</a><br /><a href="/tags/">Tags</a></div>
+      <div class="lbl">Set in Host Grotesk and Source Serif. No cookies, no trackers. {SITE.copyright}</div>
+    </footer>
   </body>
 </html>

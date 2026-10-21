@@ -1,14 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import PageHead from '../components/PageHead.astro';
-import CardList from '../components/CardList.astro';
 
 const books = await getCollection('books');
-const description = "Books I've read and liked.";
 ---
 
-<Base title="Books" description={description}>
-  <PageHead title="Books" subtitle="Some books I've read and would recommend." />
-  <CardList items={books} />
+<Base title="Books" description="Books I've read and liked.">
+  <header class="g phead">
+    <span class="lbl ink">Books · {books.length}</span>
+    <div class="tt">
+      <h1>What I read. <span>Some books I've read and would recommend.</span></h1>
+    </div>
+  </header>
+  <section class="g reading" aria-label="Books">
+    <h2 class="gl">Read</h2>
+    <div class="list">
+      {books.map(({ data: b }) => (
+        <div class="brow">
+          <h3>{b.link ? <a href={b.link} rel="noopener noreferrer">{b.title}</a> : b.title}{b.subtitle && <span class="lbl">{b.subtitle}{b.badge && ` · ${b.badge}`}</span>}</h3>
+          {b.content && <p class="verdict">{b.content}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
 </Base>
