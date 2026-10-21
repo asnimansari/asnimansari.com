@@ -68,6 +68,19 @@ tags = ["fiction"]
    `rm -rf dist` (build output isn't committed). The build validates the
    entry against the schema, so a typo in a field name fails here.
 
-7. **Report** the title/author added and the cover source used (Open Library
+7. **Commit and push to master.** Always do this after a successful build,
+   without asking. Only `src/content/data/books.toml` should be changed.
+   - `git fetch origin`, then check that `origin/master` is an ancestor of
+     `HEAD` (`git merge-base --is-ancestor origin/master HEAD`) and that
+     there are no unrelated uncommitted changes.
+   - If so, commit with a short message like `Add <title>` (no AI
+     attribution line, per `CLAUDE.md`) and `git push origin HEAD:master`.
+   - If there's a conflict (master has moved ahead, or other files have
+     uncommitted changes), don't force anything. Leave the change
+     uncommitted or committed locally and tell the user why it wasn't pushed.
+   - If git has no author identity, pass it per command with
+     `git -c user.email=... -c user.name=...` rather than changing config.
+
+8. **Report** the title/author added and the cover source used (Open Library
    vs. the original site), so the user can swap it if they'd rather have a
-   different edition's cover.
+   different edition's cover. Also say whether the push to master happened.
