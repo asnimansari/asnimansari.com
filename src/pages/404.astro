@@ -2,9 +2,11 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Not found">
-  <div class="not-found">
-    <h1>404 Not Found</h1>
-    <p><a href="/">« back to home »</a></p>
-  </div>
+<Base title="Not found" description="This page isn't here." noindex>
+  <section class="g lost">
+    <div class="tt">
+      <h1>This page isn’t here. <span>It may have moved.</span></h1>
+      <p>Try the <a href="/posts/">posts</a>, the <a href="/books/">books</a> or go <a href="/">home</a>.</p>
+    </div>
+  </section>
 </Base>

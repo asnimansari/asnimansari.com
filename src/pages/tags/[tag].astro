@@ -1,8 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PageHead from '../../components/PageHead.astro';
-import PostList from '../../components/PostList.astro';
-import { getTags } from '../../lib/posts';
+import { getTags, formatDate, isoDate } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const tags = await getTags();
@@ -13,7 +11,15 @@ const { tag } = Astro.props;
 ---
 
 <Base title={`Tag: ${tag.name}`} description={`Posts tagged ${tag.name}.`}>
-  <a class="back" href="/tags/">← Tags</a>
-  <PageHead title={`Tag: ${tag.name}`} />
-  <PostList posts={tag.posts} />
+  <header class="g phead">
+    <span class="lbl ink">Tag · {tag.posts.length}</span>
+    <div class="tt"><h1>{tag.name}. <span>Posts tagged {tag.name}. <a href="/tags/">All tags</a></span></h1></div>
+  </header>
+  <section class="g year">
+    <ul class="rows" style="grid-column: 1 / -1">
+      {tag.posts.map((p) => (
+        <li><a class="with-dek" href={`/posts/${p.id}/`}><b class="tt">{p.data.title}</b><span class="dek">{p.data.description}</span><time class="d" datetime={isoDate(p.data.date)}>{formatDate(p.data.date)}</time></a></li>
+      ))}
+    </ul>
+  </section>
 </Base>
