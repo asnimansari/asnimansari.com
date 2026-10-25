@@ -5,14 +5,21 @@ flow = "stack"
 title = "Senior Software Engineer, Sensibull (by Zerodha)"
 badge = "Jul 2018 - Present"
 content = """
-First non-founding engineering hire (employee #6) at India's largest options trading platform (13M+ registered users, ~200K DAU); own core revenue and trading systems end to end within a flat, 13-engineer team.
+First non-founding engineering hire (employee #6) at India's largest options trading platform (13M+ registered users, ~200K DAU); own core revenue and trading systems end to end within a flat, 13-engineer team. Ground-up ownership of large segments of the stack in an early-stage, ambiguous environment.
 
-- Re-architected the derivative order management service into an event-driven system on Kafka with an idempotent order state machine, eliminating lock contention, cutting database load by ~50%, and reliably processing 200K+ orders/day.
-- Rewrote the paper trading platform (400K+ users) from Python to Rust. Expiry-aware PnL caching, in-memory computation, and Redis-backed caches cut p90 response times from 5s to a few milliseconds.
-- Engineered the WebSocket server: per-connection reader/writer tasks, per-client tick conflation, heartbeat-based dead-connection detection, and zero-downtime jittered deploys.
-- Built the broker market-data backbone end to end: Golang services parsing NSE binary UDP feeds and broker WebSocket streams, fanning out ~200K messages/minute over NATS.
-- Built the subscription and payment platform (Razorpay + broker ledger-debit integrations, recurring billing, HMAC and AWS KMS encryption) and a multi-vendor notification service handling ~300K messages/day.
-- Built 3 stock-broker platform integrations that grew the user base 2.7x within a month of launch; provisioned AWS infra as code with Terraform and built CI/CD pipelines; mentored engineers and ran technical interviews.
+- Re-architected the derivative order management service into an event-driven, orchestration-layer system built on Kafka, an idempotent order state machine, and internal channels for batching state transitions and PostgreSQL writes. Eliminated lock contention at peak load, cut database load by ~50%, and reliably processed 200K+ orders/day within a 6-hour trading window. Stack: Rust, PostgreSQL, Kafka
+- Rewrote the paper trading platform (400K+ registered users) from Python to Rust, redesigning PnL computation for a deeply nested portfolio model (up to 500 portfolios × 500 groups × 500 orders per user). Introduced expiry-aware PnL caching, in-memory computation over live market data, Redis-backed position and price caches, and query batching, cutting p90 response times from 5 seconds to a few milliseconds. Stack: Rust, PostgreSQL, Redis
+- Designed and built the client-facing real-time WebSocket server in Rust (Tokio + Axum) with subscription multiplexing, fanning single upstream NATS feeds out to thousands of clients: a tool-integration layer connecting internal data systems to end users. Sustained 40K peak concurrent connections (~300K/day) on a single vertically scaled instance. Stack: Rust, Tokio, Axum, NATS
+- Engineered the WebSocket server for real-world client and deploy conditions: a central packet-routing gateway with dedicated per-connection reader/writer tasks, per-client tick conflation with error signaling for slow consumers, token-based auth, heartbeat/ping-pong dead-connection detection, and zero-downtime mid-market deploys via jittered connection draining over 30 seconds. Stack: Rust, Tokio
+- Built the platform's broker market-data backbone end to end: standalone Golang services ingesting real-time NSE feeds and broker WebSocket streams with automatic reconnection and failure alerting, fanning out ~200K messages/minute over NATS to power client services. Shipped production-ready, always-on data systems that the product relies on every trading day. Stack: Golang, NATS, AWS EC2
+- Engineered the ingestion hot path to absorb market-open bursts: buffered Go channels decoupling UDP reads from parsing, per-instrument tick conflation, pre-allocated buffers to minimize GC pressure, and latency-first non-persistent NATS delivery as deliberate load-shedding. Stack: Golang, NATS
+- Built the subscription and payment platform end to end: Razorpay and broker ledger-debit integrations, recurring billing, discount engine, plan extensions and upgrades, multi-platform support, and admin revenue reporting. Stack: Rust, PostgreSQL, Redis
+- Architected a multi-vendor notification service (WhatsApp, FCM push, and more) handling ~300K messages/day, with per-vendor rate limiting, retry with exponential backoff, and horizontally scaled consumers for throughput-based prioritization. Stack: Golang, SQS, PostgreSQL
+- Built 3 stock-broker platform integrations powering Sensibull's horizontal expansion, including a broker-to-platform user funnel that grew the user base 2.7x within one month of launch. Stack: Rust, Golang, PostgreSQL, Redis
+- Developed a URL shortener with Open Graph link previews for social sharing, contributing to a 2x increase in website traffic. Stack: Golang
+- Provisioned and managed AWS infrastructure (ECS, EC2, RDS, MSK, SQS, CloudWatch, Athena) as code using Terraform; built CI/CD pipelines for API services, standalone servers, and DB migrations across environments. Stack: Terraform, Jenkins, CodeBuild
+- Mentored new engineers, conducted technical interviews for engineering hires, and debugged critical backend, infrastructure, and frontend issues in production. Applies strong backend engineering fundamentals to design, build, and operate production systems day to day.
+- Prototyped internal automation with LLM-assisted tooling, evaluating LLM-driven agent orchestration and tool/function calling patterns to translate manual operational workflows into reusable agent capabilities.
 """
 tags = ["Rust", "Golang", "Kafka", "PostgreSQL", "Redis", "AWS"]
 featured = true
@@ -20,11 +27,11 @@ featured = true
 [[item]]
 title = "Co-founder & Tech Lead, Visitor Management Startup"
 badge = "Jan 2016 - Jan 2017"
-content = "Built an India-focused visitor management platform (Envoy alternative): check-in app, host notifications, and admin dashboard, while completing my engineering degree. Shut down: too early for the Indian market."
+content = "Built an India-focused visitor management platform (Envoy alternative) with a check-in app, host notifications, and admin dashboard, while completing my engineering degree. Shut down: too early for the Indian market."
 tags = ["Python", "JavaScript"]
 
 [[item]]
 title = "Co-founder & Tech Lead, Carpooling Platform"
 badge = "Jan 2015"
-content = "Built a ride-sharing/carpooling product (BlaBlaCar model for India) end to end: matching web app and backend, while in college. Shut down due to regulatory constraints on carpooling in India."
+content = "Built a ride-sharing/carpooling product (BlaBlaCar model for India) end to end while in college. Shut down due to regulatory constraints on carpooling in India."
 tags = ["Python", "JavaScript"]
