@@ -1,23 +1,55 @@
 # Countries I've been to, newest trip first. `country` is matched against the map's
 # Natural Earth names; common short forms like "USA", "UK" and "UAE" work too.
 # `year` and `places` are optional and show in the label when the country is pointed at.
-# The entries below India are examples: replace them with real trips.
 
 [[item]]
 country = "India"
 places = "Bengaluru, Kerala"
 
 [[item]]
-country = "Singapore"
-year = 2024
-places = "Marina Bay, Sentosa"
+country = "Japan"
 
 [[item]]
-country = "United Arab Emirates"
-year = 2023
-places = "Dubai, Abu Dhabi"
+country = "Singapore"
+
+[[item]]
+country = "Greece"
+
+[[item]]
+country = "Vietnam"
 
 [[item]]
 country = "Sri Lanka"
-year = 2022
-places = "Colombo, Kandy, Ella"
+
+[[item]]
+country = "United Arab Emirates"
+
+[[item]]
+country = "United States"
+
+[[item]]
+country = "Latvia"
+
+[[item]]
+country = "Estonia"
+
+[[item]]
+country = "Lithuania"
+
+[[item]]
+country = "Albania"
+
+[[item]]
+country = "France"
+
+[[item]]
+country = "Iceland"
+
+[[item]]
+country = "Germany"
+
+[[item]]
+country = "Austria"
+
+[[item]]
+country = "Hungary"

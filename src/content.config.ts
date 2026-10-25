@@ -40,7 +40,7 @@ const item = z.object({
 const toml = (name: string) =>
   file(`src/content/data/${name}.toml`, {
     parser: (text) =>
-      ((parse(text).item ?? []) as Record<string, unknown>[]).map((it, i) => ({ id: String(i), ...it })),
+      ((parse(text).item ?? []) as Record<string, unknown>[]).map((it, i) => ({ id: String(i).padStart(4, '0'), ...it })),
   });
 
 const collection = (name: string) => defineCollection({ loader: toml(name), schema: item });
