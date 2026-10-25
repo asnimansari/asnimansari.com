@@ -52,7 +52,6 @@ const travel = defineCollection({
     country: z.string(),
     year: z.union([z.number(), z.string()]).optional(),
     places: z.string().optional(),
-    home: z.boolean().default(false),
   }),
 });
 

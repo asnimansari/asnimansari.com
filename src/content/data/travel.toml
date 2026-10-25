@@ -1,12 +1,10 @@
 # Countries I've been to, newest trip first. `country` is matched against the map's
 # Natural Earth names; common short forms like "USA", "UK" and "UAE" work too.
-# `home = true` marks where I live: it's drawn in a darker flame. `year` and `places`
-# show in the label when the country is pointed at.
+# `year` and `places` are optional and show in the label when the country is pointed at.
 # The entries below India are examples: replace them with real trips.
 
 [[item]]
 country = "India"
-home = true
 places = "Bengaluru, Kerala"
 
 [[item]]

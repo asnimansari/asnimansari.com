@@ -9,7 +9,7 @@ const { land, shapes } = atlas(trips.map((t) => t.country));
 const countries = [...new Map(trips.map((t) => [t.id, t])).values()];
 const n = countries.length;
 type Trip = (typeof trips)[number];
-const when = (t: Trip) => (t.home ? 'Home' : t.year ? String(t.year) : '');
+const when = (t: Trip) => (t.year ? String(t.year) : '');
 const label = (t: Trip) => [t.country, when(t), t.places].filter(Boolean).join(', ');
 ---
 
@@ -24,7 +24,7 @@ const label = (t: Trip) => [t.country, when(t), t.places].filter(Boolean).join('
   <section class="g atlas" aria-labelledby="h-map">
     <h2 class="colh" id="h-map">
       <span>Map</span>
-      <span class="key lbl"><span><i class="home"></i>Home</span><span><i></i>Visited</span></span>
+      <span class="key lbl"><span><i></i>Visited</span></span>
     </h2>
     <figure class="map">
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-labelledby="map-title" tabindex="-1">
@@ -33,7 +33,7 @@ const label = (t: Trip) => [t.country, when(t), t.places].filter(Boolean).join('
         {countries.map((t) => {
           const s = shapes.get(t.id)!;
           return (
-            <g class:list={['been', { home: t.home }]} data-name={t.country} data-when={when(t)} data-places={t.places} data-at={s.at.join(' ')} tabindex="0" aria-label={label(t)}>
+            <g class="been" data-name={t.country} data-when={when(t)} data-places={t.places} data-at={s.at.join(' ')} tabindex="0" aria-label={label(t)}>
               <path d={s.d} />
               {s.dot && <circle cx={s.at[0]} cy={s.at[1]} r="4.5" />}
             </g>

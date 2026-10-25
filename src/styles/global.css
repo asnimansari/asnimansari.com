@@ -649,16 +649,14 @@ a.lp-tweet { display: block; }
 @media (max-width: 860px) { .cv .gl, .cv .list { grid-column: 1 / -1; } .cv .gl { margin-bottom: 8px; } }
 .tags-all a { display: flex; justify-content: space-between; }
 
-/* travel: one map; visited countries in flame, home a shade darker, ink while pointed at */
+/* travel: one map; visited countries in flame, ink while pointed at */
 .atlas { padding-bottom: 96px; }
 .atlas .key { display: flex; gap: 18px; }
 .atlas .key i { display: inline-block; width: .7em; height: .7em; background: var(--flame); margin-right: .45em; vertical-align: -.02em; }
-.atlas .key i.home { background: var(--flame-ink); }
 .map { grid-column: 1 / -1; position: relative; margin: 0; }
 .map svg { display: block; width: 100%; height: auto; }
 .map .land path { fill: var(--land); stroke: var(--paper); stroke-width: .6; stroke-linejoin: round; }
 .map .been { fill: var(--flame); stroke: var(--paper); stroke-width: .6; stroke-linejoin: round; outline: none; transition: fill .2s; }
-.map .been.home { fill: var(--flame-ink); }
 .map .been circle { stroke-width: 1.5; }
 .map .been.on { fill: var(--ink); }
 .map .tip { position: absolute; z-index: 1; transform: translate(-50%, calc(-100% - 12px)); padding: 7px 10px 8px; background: var(--ink); color: var(--paper); white-space: nowrap; pointer-events: none; }
