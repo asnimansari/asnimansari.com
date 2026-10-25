@@ -2,6 +2,11 @@ layout = "row"
 flow = "stack"
 
 [[item]]
+title = "mattpocock/skills"
+link = "https://github.com/mattpocock/skills"
+badge = "ai"
+
+[[item]]
 title = "Cities and Ambition"
 link = "https://www.paulgraham.com/cities.html"
 badge = "essay"
