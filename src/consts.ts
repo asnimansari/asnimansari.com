@@ -14,6 +14,7 @@ export const NAV = [
   { name: 'posts', path: '/posts/' },
   { name: 'books', path: '/books/' },
   { name: 'bookmarks', path: '/bookmarks/' },
+  { name: 'travel', path: '/travel/' },
   { name: 'resume', path: '/resume/' },
   { name: 'github', path: 'https://github.com/asnimansari', external: true },
 ];

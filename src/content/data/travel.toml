@@ -1,0 +1,25 @@
+# Countries I've been to, newest trip first. `country` is matched against the map's
+# Natural Earth names; common short forms like "USA", "UK" and "UAE" work too.
+# `home = true` marks where I live: it's drawn in a darker flame. `year` and `places`
+# show in the label when the country is pointed at.
+# The entries below India are examples: replace them with real trips.
+
+[[item]]
+country = "India"
+home = true
+places = "Bengaluru, Kerala"
+
+[[item]]
+country = "Singapore"
+year = 2024
+places = "Marina Bay, Sentosa"
+
+[[item]]
+country = "United Arab Emirates"
+year = 2023
+places = "Dubai, Abu Dhabi"
+
+[[item]]
+country = "Sri Lanka"
+year = 2022
+places = "Colombo, Kandy, Ella"

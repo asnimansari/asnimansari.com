@@ -21,6 +21,8 @@
   /* flame for small text (numbers, note marks): 5:1 on white. The block behind the
      collaborators call is a brighter flame so ink on it reads at 5:1 too. */
   --flame-text: #C8401A; --flame-block: #E0531F;
+  /* the travel map: countries not yet visited */
+  --land: #e4e4e1;
   /* on the flame block: the headline's first sentence, the list's hairlines */
   --invite-head: #fff; --invite-rule: rgba(0,0,0,.4);
   /* white text on flame (the video badge); the buttons */
@@ -48,6 +50,7 @@
     --wash: #1c1c1c; --wash-code: #202020;
     --flame: #E85A2B; --flame-ink: #F2804F; --tint: #6B2D17;
     --flame-text: #EE6A3C; --flame-block: #9A3313;
+    --land: #2b2b2b;
     --invite-head: #F2B9A3; --invite-rule: rgba(255,255,255,.3);
     --on-flame: #fff; --btn-hover: #fff; --ghost-hover: rgba(255,255,255,.1);
     --img-ground: #ececec; --shot-filter: brightness(.88);
@@ -61,6 +64,7 @@
   --wash: #1c1c1c; --wash-code: #202020;
   --flame: #E85A2B; --flame-ink: #F2804F; --tint: #6B2D17;
   --flame-text: #EE6A3C; --flame-block: #9A3313;
+  --land: #2b2b2b;
   --invite-head: #F2B9A3; --invite-rule: rgba(255,255,255,.3);
   --on-flame: #fff; --btn-hover: #fff; --ghost-hover: rgba(255,255,255,.1);
   --img-ground: #ececec; --shot-filter: brightness(.88);
@@ -644,3 +648,24 @@ a.lp-tweet { display: block; }
 .cv .item img { float: right; width: 72px; margin-left: 18px; border: 1px solid var(--rule); }
 @media (max-width: 860px) { .cv .gl, .cv .list { grid-column: 1 / -1; } .cv .gl { margin-bottom: 8px; } }
 .tags-all a { display: flex; justify-content: space-between; }
+
+/* travel: one map; visited countries in flame, home a shade darker, ink while pointed at */
+.atlas { padding-bottom: 96px; }
+.atlas .key { display: flex; gap: 18px; }
+.atlas .key i { display: inline-block; width: .7em; height: .7em; background: var(--flame); margin-right: .45em; vertical-align: -.02em; }
+.atlas .key i.home { background: var(--flame-ink); }
+.map { grid-column: 1 / -1; position: relative; margin: 0; }
+.map svg { display: block; width: 100%; height: auto; }
+.map .land path { fill: var(--land); stroke: var(--paper); stroke-width: .6; stroke-linejoin: round; }
+.map .been { fill: var(--flame); stroke: var(--paper); stroke-width: .6; stroke-linejoin: round; outline: none; transition: fill .2s; }
+.map .been.home { fill: var(--flame-ink); }
+.map .been circle { stroke-width: 1.5; }
+.map .been.on { fill: var(--ink); }
+.map .tip { position: absolute; z-index: 1; transform: translate(-50%, calc(-100% - 12px)); padding: 7px 10px 8px; background: var(--ink); color: var(--paper); white-space: nowrap; pointer-events: none; }
+.map .tip::after { content: ''; position: absolute; left: 50%; top: 100%; margin-left: -5px; border: 5px solid transparent; border-top-color: var(--ink); }
+.map .tip b { font-weight: 600; font-size: .9rem; }
+.map .tip span { margin-left: .6em; opacity: .7; }
+.map .tip em { display: block; margin-top: 2px; font: italic 400 .9rem/1.35 var(--serif); opacity: .8; }
+.map .tip :empty { display: none; }
+@media (max-width: 860px) { .map .been circle { r: 8; } }
+@media (max-width: 600px) { .map .been circle { r: 12; } }

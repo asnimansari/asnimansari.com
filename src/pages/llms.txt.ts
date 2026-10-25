@@ -18,6 +18,7 @@ ${postLines}
 
 - [Books](${SITE.url}/books/): Books I've read.
 - [Bookmarks](${SITE.url}/bookmarks/): Links worth keeping.
+- [Travel](${SITE.url}/travel/): A map of the countries I've been to.
 - [Resume](${SITE.url}/resume/): Experience, projects, and education.
 `;
 

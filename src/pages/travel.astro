@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { atlas, slug, WIDTH, HEIGHT } from '../lib/atlas';
+
+const trips = (await getCollection('travel')).map(({ data }) => ({ ...data, id: slug(data.country) }));
+const { land, shapes } = atlas(trips.map((t) => t.country));
+// a country listed twice (two trips) is drawn and counted once
+const countries = [...new Map(trips.map((t) => [t.id, t])).values()];
+const n = countries.length;
+type Trip = (typeof trips)[number];
+const when = (t: Trip) => (t.home ? 'Home' : t.year ? String(t.year) : '');
+const label = (t: Trip) => [t.country, when(t), t.places].filter(Boolean).join(', ');
+---
+
+<Base title="Travel" description="A map of the countries I've been to.">
+  <header class="g phead">
+    <span class="lbl ink">Travel · {n}</span>
+    <div class="tt">
+      <h1>Where I've been. <span>{n} {n === 1 ? 'country' : 'countries'} so far, out of 195.</span></h1>
+    </div>
+  </header>
+
+  <section class="g atlas" aria-labelledby="h-map">
+    <h2 class="colh" id="h-map">
+      <span>Map</span>
+      <span class="key lbl"><span><i class="home"></i>Home</span><span><i></i>Visited</span></span>
+    </h2>
+    <figure class="map">
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-labelledby="map-title" tabindex="-1">
+        <title id="map-title">World map marking {countries.map((t) => t.country).join(', ')}</title>
+        <g class="land">{land.map((c) => <path d={c.d} />)}</g>
+        {countries.map((t) => {
+          const s = shapes.get(t.id)!;
+          return (
+            <g class:list={['been', { home: t.home }]} data-name={t.country} data-when={when(t)} data-places={t.places} data-at={s.at.join(' ')} tabindex="0" aria-label={label(t)}>
+              <path d={s.d} />
+              {s.dot && <circle cx={s.at[0]} cy={s.at[1]} r="4.5" />}
+            </g>
+          );
+        })}
+      </svg>
+      <div class="tip lbl" aria-hidden="true" hidden><b></b><span></span><em></em></div>
+    </figure>
+  </section>
+</Base>
+
+<script>
+  // the label points at the country's middle, so it reads the same for mouse, touch and keyboard
+  const fig = document.querySelector<HTMLElement>('.atlas .map')!;
+  const tip = fig.querySelector<HTMLElement>('.tip')!;
+  const svg = fig.querySelector('svg')!;
+  let lit: SVGGElement | null = null;
+
+  function light(shape: SVGGElement | null) {
+    if (shape === lit) return;
+    lit?.classList.remove('on');
+    lit = shape;
+    if (!shape) return void (tip.hidden = true);
+    shape.classList.add('on');
+    tip.querySelector('b')!.textContent = shape.dataset.name ?? '';
+    tip.querySelector('span')!.textContent = shape.dataset.when ?? '';
+    tip.querySelector('em')!.textContent = shape.dataset.places ?? '';
+    const [x, y] = (shape.dataset.at ?? '0 0').split(' ').map(Number);
+    const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    tip.style.left = `${x * scale}px`;
+    tip.style.top = `${y * scale}px`;
+    tip.hidden = false;
+  }
+
+  const target = (e: Event) => (e.target as Element).closest<SVGGElement>('.been');
+  svg.addEventListener('pointerover', (e) => light(target(e)));
+  svg.addEventListener('pointerleave', () => light(null));
+  svg.addEventListener('focusin', (e) => light(target(e)));
+  svg.addEventListener('focusout', () => light(null));
+</script>

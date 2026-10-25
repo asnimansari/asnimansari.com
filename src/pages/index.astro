@@ -46,6 +46,7 @@ const firstName = SITE.name.split(' ')[0];
     <ul class="rows">
       <li><a href="/books/"><b>Books</b><span class="dek">What I’ve read and would recommend.</span><span class="d">→</span></a></li>
       <li><a href="/bookmarks/"><b>Bookmarks</b><span class="dek">Links I keep coming back to.</span><span class="d">→</span></a></li>
+      <li><a href="/travel/"><b>Travel</b><span class="dek">A map of the countries I’ve been to.</span><span class="d">→</span></a></li>
       {LINKS.map((l) => <li><a href={l.url}><b>{l.name}</b><span class="dek"></span><span class="d">↗</span></a></li>)}
     </ul>
   </section>

@@ -37,14 +37,24 @@ const item = z.object({
   featured: z.boolean().default(false),
 });
 
-const collection = (name: string) =>
-  defineCollection({
-    loader: file(`src/content/data/${name}.toml`, {
-      parser: (text) =>
-        ((parse(text).item ?? []) as Record<string, unknown>[]).map((it, i) => ({ id: String(i), ...it })),
-    }),
-    schema: item,
+const toml = (name: string) =>
+  file(`src/content/data/${name}.toml`, {
+    parser: (text) =>
+      ((parse(text).item ?? []) as Record<string, unknown>[]).map((it, i) => ({ id: String(i), ...it })),
   });
+
+const collection = (name: string) => defineCollection({ loader: toml(name), schema: item });
+
+// one row per country, newest trip first; `country` must be a name the map knows (src/lib/atlas.ts)
+const travel = defineCollection({
+  loader: toml('travel'),
+  schema: z.object({
+    country: z.string(),
+    year: z.union([z.number(), z.string()]).optional(),
+    places: z.string().optional(),
+    home: z.boolean().default(false),
+  }),
+});
 
 export const collections = {
   posts,
@@ -54,4 +64,5 @@ export const collections = {
   experience: collection('experience'),
   projects: collection('projects'),
   education: collection('education'),
+  travel,
 };

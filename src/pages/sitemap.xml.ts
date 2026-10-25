@@ -9,6 +9,7 @@ export async function GET() {
     { path: '/posts/' },
     { path: '/books/' },
     { path: '/bookmarks/' },
+    { path: '/travel/' },
     { path: '/resume/' },
     { path: '/tags/' },
     ...posts.map((p) => ({ path: `/posts/${p.id}/`, lastmod: isoDate(p.data.date) })),

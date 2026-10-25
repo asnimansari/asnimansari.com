@@ -5,7 +5,8 @@ Personal site built with [Astro](https://astro.build/) as a fully static build (
 ## Layout
 
 - `src/content/posts/*.md`: blog posts (YAML front matter, see the `write-post` skill). Slug is the filename, URL is `/posts/<slug>/`.
-- `src/content/data/*.toml`: `[[item]]` lists for books, bookmarks, and the resume sections (experience, projects, education). Newest entries go at the top. Schemas live in `src/content.config.ts`.
+- `src/content/data/*.toml`: `[[item]]` lists for books, bookmarks, travel, and the resume sections (experience, projects, education). Newest entries go at the top. Schemas live in `src/content.config.ts`.
+- `src/pages/travel.astro`: the travel map. `src/lib/atlas.ts` projects the Natural Earth countries (`world-atlas`) into SVG at build time, and fails the build if a `country` in `travel.toml` isn't on the map.
 - `src/content/notes/`: unpublished notes, no route.
 - `src/pages/`: routes. `index.astro` is the animated landing page (styles in `src/styles/landing.css`, script in `src/scripts/landing.js`). The other pages use `src/layouts/Base.astro` and `src/styles/global.css`.
 - `src/consts.ts`: site name, bio, nav, social links.
